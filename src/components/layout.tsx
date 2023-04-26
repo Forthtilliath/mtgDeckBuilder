@@ -1,15 +1,13 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from './layout.module.scss'
 import { ReactNode } from 'react'
 
 export const siteTitle = 'MtgDeckBuilder'
 
-interface LayoutProps {
+interface Props {
   children: ReactNode
 }
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children }: Props) {
   return (
     <div className={styles.container}>
       <Head>
@@ -20,16 +18,7 @@ export default function Layout({ children }: LayoutProps) {
         />
       </Head>
       <header className={styles.header}>
-        <>
-          <Image
-            priority
-            src="/images/profile.jpg"
-            height={144}
-            width={144}
-            alt=""
-          />
-          <h1>ValhallaCode</h1>
-        </>
+        <h1>ValhallaCode</h1>
       </header>
       <main>{children}</main>
     </div>

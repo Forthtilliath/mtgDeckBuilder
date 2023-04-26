@@ -1,0 +1,11 @@
+.main {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+  min-height: 100vh;
+  flex: 60;
+
+  border: 2px dotted yellowgreen;
+}
