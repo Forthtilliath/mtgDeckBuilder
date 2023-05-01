@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
-import Main from '@/components/main'
-import Aside from '@/components/aside'
 import Gallery from '@/components/gallery'
 import Card from '@/components/card'
 
@@ -30,19 +28,16 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Aside>Deck</Aside>
-      <Main>
-        <Gallery>
-          {cards.map((cardData) => (
-            <Card
-              name={cardData.name}
-              id={cardData.id}
-              imgUrl={cardData.imgUrl}
-              key={cardData.id}
-            />
-          ))}
-        </Gallery>
-      </Main>
+      <Gallery>
+        {cards.map((cardData) => (
+          <Card
+            name={cardData.name}
+            id={cardData.id}
+            imgUrl={cardData.imgUrl}
+            key={cardData.id}
+          />
+        ))}
+      </Gallery>
     </Layout>
   )
 }

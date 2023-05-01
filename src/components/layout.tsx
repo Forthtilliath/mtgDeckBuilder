@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Deck from './deck'
 import styles from './layout.module.scss'
 import { ReactNode } from 'react'
 
@@ -9,18 +9,14 @@ interface Props {
 }
 export default function Layout({ children }: Props) {
   return (
-    <div className={styles.container}>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Build your Magic: the Gathering deck right here!"
-        />
-      </Head>
-      <header className={styles.header}>
+    <div className={styles.layout}>
+      <header className={styles.Titre}>
         <h1>ValhallaCode</h1>
       </header>
-      <main>{children}</main>
+      <aside className={styles.Deck}>
+        <Deck />
+      </aside>
+      <main className={styles.Main}>{children}</main>
     </div>
   )
 }
