@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/Coding-Jarl/mtgDeckBuilder/compare/v0.1.2...v0.1.3) (2023-05-01)
+
+
+### :lipstick: Styling
+
+* **global:** fix the global layout ([57003df](https://github.com/Coding-Jarl/mtgDeckBuilder/commit/57003df92561b0442b0c85185615da1436b45d44))
+
+
+### :sparkles: Features
+
+* **api:** add /cards endpoint support ([00be0a4](https://github.com/Coding-Jarl/mtgDeckBuilder/commit/00be0a4309a92963028d66e6bef285b833bdd0ff))
+* **deck:** add api call to Deck component ([8d87f08](https://github.com/Coding-Jarl/mtgDeckBuilder/commit/8d87f08241c313dc8edff9fda5473a16c09a3f16))
+
 ### [0.1.2](///compare/v0.1.1...v0.1.2) (2023-04-26)
 
 
