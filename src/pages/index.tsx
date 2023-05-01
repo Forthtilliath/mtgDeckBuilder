@@ -2,25 +2,20 @@ import Head from 'next/head'
 import Layout from '../components/layout'
 import Gallery from '@/components/gallery'
 import Card from '@/components/card'
+import axios from 'axios'
 
 const siteTitle = 'MtgDeckBuilder - Home'
 
 interface CardData {
   id: string
   name: string
-  imgUrl: string
+  imageUrl: string
+}
+interface Props {
+  cards: Array<CardData>
 }
 
-export default function Home() {
-  const cards: Array<CardData> = [
-    {
-      id: '42',
-      imgUrl:
-        'https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=82992&type=card',
-      name: 'Angel of Mercy',
-    },
-  ]
-
+export default function Home({ cards }: Props) {
   return (
     <Layout>
       <Head>
@@ -33,11 +28,24 @@ export default function Home() {
           <Card
             name={cardData.name}
             id={cardData.id}
-            imgUrl={cardData.imgUrl}
+            imgUrl={cardData.imageUrl}
             key={cardData.id}
           />
         ))}
       </Gallery>
     </Layout>
   )
+}
+
+export async function getServerSideProps() {
+  const { data } = await axios.get<{ cards: CardData[] }>(
+    'https://api.magicthegathering.io/v1/cards'
+  )
+  const cards = data.cards.filter((cardData) => cardData.imageUrl)
+
+  return {
+    props: {
+      cards,
+    },
+  }
 }
