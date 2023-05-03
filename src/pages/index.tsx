@@ -3,7 +3,6 @@ import Layout from '../components/layout'
 import Gallery from '@/components/gallery'
 import Card from '@/components/card'
 import axios from 'axios'
-import { Counter } from '@/components/counter'
 import { store } from '@/lib/redux/store'
 import { Provider } from 'react-redux'
 
@@ -27,7 +26,6 @@ export default function Home({ cards }: Props) {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Counter />
         <Gallery>
           {cards.map((cardData) => (
             <Card
