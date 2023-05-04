@@ -13,8 +13,10 @@ export default function Layout({ children }: Props) {
       <header className={styles.Titre}>
         <h1>ValhallaCode</h1>
       </header>
-      <aside className={styles.Deck}>
-        <Deck />
+      <aside className={styles.Aside}>
+        <div className={styles.fixedContainer}>
+          <Deck />
+        </div>
       </aside>
       <main className={styles.Main}>{children}</main>
     </div>

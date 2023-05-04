@@ -7,14 +7,18 @@
   grid-auto-flow: row;
   grid-template-areas:
     'Titre Titre'
-    'Deck Main';
+    'Aside Main';
   height: 100vh;
 }
 
-.Deck {
-  grid-area: Deck;
+.Aside {
+  grid-area: Aside;
 
   border: 2px dotted firebrick;
+
+  .fixedContainer {
+    position: fixed;
+  }
 }
 
 .Main {
