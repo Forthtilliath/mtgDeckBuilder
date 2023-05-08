@@ -8,37 +8,39 @@ datasource db {
 }
 
 model Card {
-  id    Int    @id @default(autoincrement())
-  uuid  String @unique(map: "uuid_UNIQUE") @db.VarChar(64)
-  name  String @db.VarChar(64)
-
+  id          Int          @id @default(autoincrement())
+  uuid        String       @unique(map: "uuid_UNIQUE") @db.VarChar(64)
+  name        String       @db.VarChar(64)
   usedInDecks CardInDeck[]
 }
 
 model Deck {
-  id    Int    @id @default(autoincrement())
-  name  String @db.VarChar(64)
-  description String @db.MediumText
-  author   User @relation(fields: [idAuthor], references: [id])
-  idAuthor Int
+  id          Int          @id @default(autoincrement())
+  name        String       @db.VarChar(64) 
+  description String       @db.MediumText
+  idAuthor    Int
+  contents    CardInDeck[]
+  author      User         @relation(fields: [idAuthor], references: [id])
 
-  contents CardInDeck[]
+  @@unique([idAuthor, name])
+  @@index([idAuthor], map: "Deck_idAuthor_fkey")
 }
 
 model CardInDeck {
-  card       Card     @relation(fields: [idCard], references: [id])
-  idCard     Int // relation scalar field (used in the `@relation` attribute above)
+  idCard Int
+  idDeck Int
+  count  Int
+  card   Card @relation(fields: [idCard], references: [id])
   deck   Deck @relation(fields: [idDeck], references: [id])
-  idDeck Int // relation scalar field (used in the `@relation` attribute above)
-  @@id([idCard, idDeck])
 
-  count Int 
+  @@id([idCard, idDeck])
+  @@index([idDeck], map: "CardInDeck_idDeck_fkey")
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  email String @unique @db.VarChar(128)
+  id          Int    @id @default(autoincrement())
+  email       String @unique @db.VarChar(128)
   displayName String @db.VarChar(32)
-  password String @db.VarChar(64)
-  decks Deck[]
+  password    String @db.VarChar(64)
+  decks       Deck[]
 }
