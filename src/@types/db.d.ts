@@ -8,10 +8,10 @@ declare global {
       }
     }>
 
-    type Author = Prisma.UserGetPayload<{}>
-    type Card = Prisma.CardGetPayload<{}>
-    type Deck = Prisma.DeckGetPayload<{}>
-    type CardInDeck = Prisma.CardInDeckGetPayload<{}>
+    type Author = Prisma.UserGetPayload<object>
+    type Card = Prisma.CardGetPayload<object>
+    type Deck = Prisma.DeckGetPayload<object>
+    type CardInDeck = Prisma.CardInDeckGetPayload<object>
   }
 }
 
