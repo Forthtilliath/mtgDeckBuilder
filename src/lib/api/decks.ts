@@ -65,8 +65,7 @@ export async function createDeck({
         createMany: {
           data: cards.map((card) => ({
             count: card.count,
-            // Ah j'ai pas l'erreur que tu avais hier
-            idCard: createdCards.find((c) => c.uuid === card.uuid)!.id,
+            idCard: createdCards.find((c) => c.uuid === card.uuid)?.id as number,
           })),
           skipDuplicates: true,
         },
