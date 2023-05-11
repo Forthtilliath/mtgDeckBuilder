@@ -44,12 +44,7 @@ export async function createDeck({
   description,
   idAuthor,
   cards,
-}: {
-  name: string
-  description: string
-  idAuthor: number
-  cards: Array<CardStore>
-}) {
+}: DeckCreation) {
   const createdCards = await createCards(cards)
 
   const newDeck = prisma.deck.create({
@@ -65,7 +60,8 @@ export async function createDeck({
         createMany: {
           data: cards.map((card) => ({
             count: card.count,
-            idCard: createdCards.find((c) => c.uuid === card.uuid)?.id as number,
+            idCard: createdCards.find((c) => c.uuid === card.uuid)
+              ?.id as number,
           })),
           skipDuplicates: true,
         },

@@ -1,9 +1,9 @@
-type CardData<T> = { cards: T[] }
+namespace API {
+  type Card = {
+    id: string
+    name: string
+    imageUrl: string
+  }
 
-type CardAPI = {
-  id: string
-  name: string
-  imageUrl: string
+  type CardData = { cards: Card[] }
 }
-
-type CardAPIData = CardData<CardAPI>

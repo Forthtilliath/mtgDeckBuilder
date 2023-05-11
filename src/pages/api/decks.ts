@@ -7,11 +7,7 @@ export default async function handler(
 ) {
   switch (req.method) {
     case 'GET':
-      const fields: Partial<{
-        name: string
-        description: string
-        idAuthor: string
-      }> = req.query
+      const fields: DeckQuery = req.query
       const decks = await listDecks(fields)
       return res.status(200).json(decks)
     case 'POST':

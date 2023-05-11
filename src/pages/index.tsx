@@ -5,19 +5,13 @@ import Card from '@/components/card'
 import axios from 'axios'
 import { store } from '@/lib/redux/store'
 import { Provider } from 'react-redux'
+import { InferGetServerSidePropsType } from 'next'
 
 const siteTitle = 'MtgDeckBuilder - Home'
 
-interface CardData {
-  id: string
-  name: string
-  imageUrl: string
-}
-interface Props {
-  cards: Array<CardData>
-}
-
-export default function Home({ cards }: Props) {
+export default function Home({
+      cards,
+    }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <Provider store={store}>
       <Layout>
@@ -42,7 +36,7 @@ export default function Home({ cards }: Props) {
 }
 
 export async function getServerSideProps() {
-  const { data } = await axios.get<{ cards: CardData[] }>(
+  const { data } = await axios.get<API.CardData>(
     'https://api.magicthegathering.io/v1/cards'
   )
   const cards = data.cards.filter((cardData) => cardData.imageUrl)

@@ -6,9 +6,8 @@ export async function getCards() {
   return cards
 }
 
-// type Data = Awaited<ReturnType<typeof getCards>>
 export default async function handler(
-  req: NextApiRequest,
+  _req: NextApiRequest,
   res: NextApiResponse
 ) {
   const cards = await getCards()
