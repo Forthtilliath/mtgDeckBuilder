@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '@/lib/db'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export async function getCards() {
-  const prisma = new PrismaClient()
   const cards = prisma.card.findMany()
   return cards
 }
@@ -10,7 +9,6 @@ export async function getCards() {
 // type Data = Awaited<ReturnType<typeof getCards>>
 export default async function handler(
   req: NextApiRequest,
-  //res: NextApiResponse<Data>
   res: NextApiResponse
 ) {
   const cards = await getCards()

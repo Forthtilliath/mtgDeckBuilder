@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-interface CardData {
+export interface CardStore {
   id: string
   uuid: string
   name: string
@@ -9,7 +9,7 @@ interface CardData {
 }
 
 export interface DeckState {
-  cards: CardData[]
+  cards: CardStore[]
 }
 
 const initialState: DeckState = {
@@ -20,7 +20,7 @@ export const deckSlice = createSlice({
   name: 'deck',
   initialState,
   reducers: {
-    addCard: (state, action: PayloadAction<CardData>) => {
+    addCard: (state, action: PayloadAction<CardStore>) => {
       const targetCard = state.cards.find(
         (curCard) => curCard.uuid === action.payload.uuid
       )
@@ -30,7 +30,7 @@ export const deckSlice = createSlice({
         state.cards.push(action.payload)
       }
     },
-    removeCard: (state, action: PayloadAction<CardData>) => {
+    removeCard: (state, action: PayloadAction<CardStore>) => {
       const indexToDelete = state.cards.findIndex(
         (curCard) => curCard.uuid === action.payload.uuid
       )
