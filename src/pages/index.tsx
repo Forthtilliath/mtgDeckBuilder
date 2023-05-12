@@ -25,7 +25,8 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
-  const { cards } = await getCards()
+  const data = await getCards()
+  const cards = data.cards ?? [];
 
   const formatedCards = cards
     .filter((cardData) => cardData.imageUrl)
@@ -42,7 +43,9 @@ async function getCards(): Promise<API.CardData> {
   try {
     const res = await fetch('https://api.magicthegathering.io/v1/cards')
     return res.json()
-  } catch (e) {
+  } catch (e: any) {
+    console.error(e.name)
+    console.error(e.message)
     return { cards: [] }
   }
 }
