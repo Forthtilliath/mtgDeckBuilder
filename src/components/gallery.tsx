@@ -9,12 +9,7 @@ export default function Gallery({ cards }: Props) {
   return (
     <ul className={styles.gallery}>
       {cards.map((cardData) => (
-        <Card
-          key={cardData.id}
-          id={cardData.id}
-          name={cardData.name}
-          imageUrl={cardData.imageUrl}
-        />
+        <Card key={cardData.id} {...cardData} />
       ))}
     </ul>
   )
