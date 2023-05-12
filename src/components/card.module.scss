@@ -12,7 +12,6 @@
 
   &:disabled {
     position: relative;
-    pointer-events: none;
     &::after {
       position: absolute;
       content: '';

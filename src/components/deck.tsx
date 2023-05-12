@@ -1,7 +1,7 @@
 import styles from './deck.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/lib/redux/store'
-import { removeCard } from '@/lib/redux/slices/deckSlice'
+import { removeCard, reset } from '@/lib/redux/slices/deckSlice'
 import axios from 'axios'
 
 export default function Deck() {
@@ -23,8 +23,9 @@ export default function Deck() {
     <>
       <ul className={styles.deck}>
         {cards.map((card) => (
-          <li key={card.id}>
+          <li className={styles.li} key={card.id}>
             <button
+              className={styles.btn}
               onClick={() =>
                 dispatch(
                   removeCard({
@@ -38,11 +39,28 @@ export default function Deck() {
             >
               -
             </button>
-            {card.count}x {card.name}
+            <span className={styles.cardName}>
+              {card.count}x {card.name}
+            </span>
           </li>
         ))}
       </ul>
-      <button onClick={hSave}>Save</button>
+      {cards.length > 0 && (
+        <div className={styles.btnsWrapper}>
+          <button
+            className={[styles.btn, styles.btnAction].join(' ')}
+            onClick={hSave}
+          >
+            Save the deck
+          </button>
+          <button
+            className={[styles.btn, styles.btnAction].join(' ')}
+            onClick={() => dispatch(reset())}
+          >
+            Reset the deck
+          </button>
+        </div>
+      )}
     </>
   )
 }
