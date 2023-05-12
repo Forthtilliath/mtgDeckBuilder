@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
 import Gallery from '@/components/gallery'
-import axios from 'axios'
 import { store } from '@/lib/redux/store'
 import { Provider } from 'react-redux'
 import { InferGetServerSidePropsType } from 'next'
@@ -26,14 +25,24 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
-  const { data } = await axios.get<API.CardData>(
-    'https://api.magicthegathering.io/v1/cards'
-  )
-  const cards = data.cards.filter((cardData) => cardData.imageUrl)
+  const { cards } = await getCards()
+
+  const formatedCards = cards
+    .filter((cardData) => cardData.imageUrl)
+    .map((c) => ({ id: c.id, name: c.name, imageUrl: c.imageUrl }))
 
   return {
     props: {
-      cards,
+      cards: formatedCards,
     },
+  }
+}
+
+async function getCards(): Promise<API.CardData> {
+  try {
+    const res = await fetch('https://api.magicthegathering.io/v1/cards')
+    return res.json()
+  } catch (e) {
+    return { cards: [] }
   }
 }
