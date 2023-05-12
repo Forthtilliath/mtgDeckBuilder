@@ -1,15 +1,16 @@
 import Image from 'next/image'
 import styles from './card.module.scss'
 import { useDispatch } from 'react-redux'
-import { addCard } from '@/lib/redux/slices/deck'
+import { addCard } from '@/lib/redux/slices/deckSlice'
+import { useDeck } from '@/lib/hooks/useDeck'
 
-interface Props {
-  name: string
-  id: string
-  imgUrl: string
-}
-export default function Card({ name, id, imgUrl }: Props) {
+type Props = API.Card
+
+export default function Card({ name, id, imageUrl }: Props) {
+  const cards = useDeck()
   const dispatch = useDispatch()
+
+  const card = cards.find((c) => c.id === id)
 
   return (
     <button
@@ -24,10 +25,11 @@ export default function Card({ name, id, imgUrl }: Props) {
           })
         )
       }
+      disabled={card && card.count >= 4}
     >
       {/* Width et height a override dans le module scss */}
       <Image
-        src={imgUrl}
+        src={imageUrl}
         alt={name}
         width={63 * 3}
         height={88 * 3}

@@ -6,7 +6,19 @@
 
   &:hover,
   &:focus {
-    border: 2px solid purple;
-    margin: calc(1rem - 2px);
+    outline: 5px solid purple;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    position: relative;
+    pointer-events: none;
+    &::after {
+      position: absolute;
+      content: '';
+      inset: 0;
+      display: block;
+      background: rgba(0, 0, 0, 0.5);
+    }
   }
 }

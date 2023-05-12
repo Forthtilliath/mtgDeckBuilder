@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "release": "standard-version --no-verify",
-    "cz": "cz"
+    "cz": "cz",
+    "prisma:migrate": "npx prisma misgrate dev",
+    "prisma:studio": "npx prisma studio"
   },
   "dependencies": {
     "@prisma/client": "^4.13.0",

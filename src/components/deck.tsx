@@ -1,7 +1,7 @@
 import styles from './deck.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/lib/redux/store'
-import { removeCard } from '@/lib/redux/slices/deck'
+import { removeCard } from '@/lib/redux/slices/deckSlice'
 import axios from 'axios'
 
 export default function Deck() {
