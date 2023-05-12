@@ -30,9 +30,9 @@ export const deckSlice = createSlice({
         state.cards.push(action.payload)
       }
     },
-    removeCard: (state, action: PayloadAction<CardStore>) => {
+    removeCard: (state, action: PayloadAction<DB.Card['uuid']>) => {
       const indexToDelete = state.cards.findIndex(
-        (curCard) => curCard.uuid === action.payload.uuid
+        (curCard) => curCard.uuid === action.payload
       )
       if (state.cards[indexToDelete].count > 1) {
         state.cards[indexToDelete].count -= 1

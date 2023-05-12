@@ -28,12 +28,7 @@ export default function Deck() {
               className={styles.btn}
               onClick={() =>
                 dispatch(
-                  removeCard({
-                    id: card.id,
-                    uuid: card.id,
-                    count: 1,
-                    name: '',
-                  })
+                  removeCard(card.uuid)
                 )
               }
             >

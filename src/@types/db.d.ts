@@ -2,9 +2,18 @@ import { Prisma } from '@prisma/client'
 
 declare global {
   namespace DB {
+    // Correct ?
     type CardWithDeck = Prisma.CardGetPayload<{
       include: {
         usedInDecks: true
+      }
+    }>
+    
+    type CardWithoutId = Prisma.CardGetPayload<{
+      select: {
+        name: true,
+        usedInDecks: true,
+        uuid:true
       }
     }>
 
