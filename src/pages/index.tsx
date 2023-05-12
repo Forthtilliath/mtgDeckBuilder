@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
 import Gallery from '@/components/gallery'
-import Card from '@/components/card'
 import axios from 'axios'
 import { store } from '@/lib/redux/store'
 import { Provider } from 'react-redux'

@@ -1,9 +1,13 @@
-namespace API {
-  type Card = {
-    id: string
-    name: string
-    imageUrl: string
-  }
+declare global {
+  namespace API {
+    type Card = {
+      id: string
+      name: string
+      imageUrl: string
+    }
 
-  type CardData = { cards: Card[] }
+    type CardData = { cards: Card[] }
+  }
 }
+
+export {}
