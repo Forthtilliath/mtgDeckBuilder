@@ -8,12 +8,23 @@ declare global {
         usedInDecks: true
       }
     }>
-    
+
+    type DeckWithCards = Prisma.DeckGetPayload<{
+      include: {
+        contents: {
+          select: {
+            card: true
+            count: true
+          }
+        }
+      }
+    }>
+
     type CardWithoutId = Prisma.CardGetPayload<{
       select: {
-        name: true,
-        usedInDecks: true,
-        uuid:true
+        name: true
+        usedInDecks: true
+        uuid: true
       }
     }>
 

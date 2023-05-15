@@ -2,21 +2,41 @@ import styles from './deck.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/lib/redux/store'
 import { removeCard, reset } from '@/lib/redux/slices/deckSlice'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
+import { useRef } from 'react'
+import { assertIsDefined } from '@/utils/methods'
+import { toast } from 'react-toastify'
+import { toastConfig } from '@/lib/toast'
 
 export default function Deck() {
   const cards = useSelector((state: RootState) => state.deck.cards)
   const dispatch = useDispatch()
+  const decknameRef = useRef<HTMLInputElement | null>(null)
 
   const hSave = async () => {
+    assertIsDefined(decknameRef.current)
+
     const myData = {
       description: 'totoland',
-      name: 'test-' + Math.random() * 100,
+      name: decknameRef.current.value || 'Default deck',
       idAuthor: 1,
       cards: cards,
     }
 
-    await axios.post('http://localhost:3000/api/decks', myData)
+    axios
+      .post('http://localhost:3000/api/decks', myData)
+      .then((res) => {
+        if (res.status === 201) {
+          toast.success('Deck ajouté avec succès !', toastConfig)
+        }
+      })
+      .catch((error: Error | AxiosError) => {
+        if (axios.isAxiosError(error) && error.response) {
+          if (error.response.status === 409) {
+            toast.error(error.response.data, toastConfig)
+          }
+        }
+      })
   }
 
   return (
@@ -26,11 +46,7 @@ export default function Deck() {
           <li className={styles.li} key={card.id}>
             <button
               className={styles.btn}
-              onClick={() =>
-                dispatch(
-                  removeCard(card.uuid)
-                )
-              }
+              onClick={() => dispatch(removeCard(card.uuid))}
             >
               -
             </button>
@@ -40,6 +56,17 @@ export default function Deck() {
           </li>
         ))}
       </ul>
+
+      <div className={styles.btnsWrapper}>
+        <form onSubmit={hSave}>
+          <input
+            type="text"
+            ref={decknameRef}
+            placeholder="Deck name"
+            className={styles.input}
+          />
+        </form>
+      </div>
       {cards.length > 0 && (
         <div className={styles.btnsWrapper}>
           <button
