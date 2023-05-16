@@ -14,9 +14,8 @@ export default async function handler(
       const rawData: DeckCreation = req.body
       try {
         const newDeck = await createDeck(rawData)
-        console.log(newDeck)
         return res.status(201).json(newDeck)
-      } catch (e: any) {
+      } catch (_err) {
         return res.status(409).end('Name already existing!')
       }
     default:

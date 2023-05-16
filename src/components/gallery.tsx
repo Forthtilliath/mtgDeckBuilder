@@ -6,6 +6,8 @@ interface Props {
 }
 
 export default function Gallery({ cards }: Props) {
+  if (cards.length === 0) return <p>No Data</p>
+
   return (
     <ul className={styles.gallery}>
       {cards.map((cardData) => (

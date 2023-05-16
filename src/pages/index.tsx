@@ -7,6 +7,7 @@ import { InferGetServerSidePropsType } from 'next'
 import { ChangeEvent, cache, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
+import { formatAPICardsWithImages } from '@/utils/methods/api'
 
 const siteTitle = 'MtgDeckBuilder - Home'
 
@@ -64,13 +65,9 @@ export async function getServerSideProps() {
   const data = await getCards()
   const cards = data.cards ?? []
 
-  const formatedCards = cards
-    .filter((cardData) => cardData.imageUrl)
-    .map((c) => ({ id: c.id, name: c.name, imageUrl: c.imageUrl }))
-
   return {
     props: {
-      cards: formatedCards,
+      cards: formatAPICardsWithImages(cards),
     },
   }
 }
