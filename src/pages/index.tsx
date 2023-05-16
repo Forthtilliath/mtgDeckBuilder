@@ -92,6 +92,8 @@ async function getCards(page = 1): Promise<API.CardData> {
     const res = await fetch(
       `https://api.magicthegathering.io/v1/cards?page=${page}`
     )
+    // Pour trouver la source du pourquoi ca fetch pas parfois
+    console.log('Data fetched...')
     return res.json()
   } catch (e: any) {
     console.error(e.name)
