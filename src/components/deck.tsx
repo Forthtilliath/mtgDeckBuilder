@@ -7,20 +7,28 @@ import { useRef } from 'react'
 import { assertIsDefined } from '@/utils/methods/global'
 import { toast } from 'react-toastify'
 import { toastConfig } from '@/lib/toastify.config'
+import { useRefInputs } from '@/utils/hooks/useRefInputs'
+
+const formInputs = ['name', 'desc']
 
 export default function Deck() {
   const cards = useSelector((state: RootState) => state.deck.cards)
   const dispatch = useDispatch()
-  const decknameRef = useRef<HTMLInputElement | null>(null)
-  const deckdescRef = useRef<HTMLInputElement | null>(null)
+
+  // const formRef = useRef<Record<'name'|'desc', HTMLInputElement | null>>({});
+  // const formRef = useRef<Record<'name' | 'desc', HTMLInputElement | null>>({
+  //   name: null,
+  //   desc: null,
+  // })
+  const [formRef, setRef] = useRefInputs(['name', 'desc'])
 
   const hSave = async () => {
-    assertIsDefined(decknameRef.current)
-    assertIsDefined(deckdescRef.current)
+    assertIsDefined(formRef.current.desc)
+    assertIsDefined(formRef.current.name)
 
     const myData = {
-      description: deckdescRef.current.value,
-      name: decknameRef.current.value || 'Default deck',
+      description: formRef.current.desc.value,
+      name: formRef.current.name.value || 'Default deck',
       idAuthor: 1,
       cards: cards,
     }
@@ -63,13 +71,13 @@ export default function Deck() {
         <form onSubmit={hSave}>
           <input
             type="text"
-            ref={decknameRef}
+            ref={setRef('name')}
             placeholder="Deck name"
             className={styles.input}
           />
           <input
             type="text"
-            ref={deckdescRef}
+            ref={setRef('desc')}
             placeholder="Deck description"
             className={styles.input}
           />
