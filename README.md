@@ -7,3 +7,5 @@ Thius website is a PoC to learn these tools from scratch:
 - Prisma
 - Commitizen
 - ...
+
+![commit](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)

@@ -1,0 +1,7 @@
+- [ ] Fixer ce problème de chargement de données (parfois les données ne chargent pas)
+- [ ] Utiliser SWR pour gérer le fetch des données
+- [ ] Faire un formulaire externe pour créer un deck
+  - [ ] Utiliser un seul useRef pour tous les inputs du formulaire
+  - [ ] Probablement utiliser un forwardRef pour le formulaire
+- [ ] Récupérer les images des nouvelles cartes directement sur le serveur
+  - [ ] L'avantage serait de faire moins de call à l'API
