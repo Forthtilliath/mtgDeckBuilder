@@ -4,9 +4,9 @@ import { RootState } from '@/lib/redux/store'
 import { removeCard, reset } from '@/lib/redux/slices/deckSlice'
 import axios, { AxiosError } from 'axios'
 import { useRef } from 'react'
-import { assertIsDefined } from '@/utils/methods'
+import { assertIsDefined } from '@/utils/methods/global'
 import { toast } from 'react-toastify'
-import { toastConfig } from '@/lib/toast'
+import { toastConfig } from '@/lib/toastify.config'
 
 export default function Deck() {
   const cards = useSelector((state: RootState) => state.deck.cards)
