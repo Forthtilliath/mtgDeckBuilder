@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styles from './card.module.scss'
 import { useDispatch } from 'react-redux'
 import { addCard } from '@/lib/redux/slices/deckSlice'
-import { useDeck } from '@/lib/hooks/useDeck'
+import { useDeck } from '@/lib/redux/store'
 
 type Props = API.Card
 
