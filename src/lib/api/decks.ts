@@ -1,4 +1,4 @@
-import { prisma } from '../db'
+import { prisma } from '../prisma.config'
 import { CardStore } from '../redux/slices/deckSlice'
 
 export async function listDecks({

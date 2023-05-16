@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/db'
+import { prisma } from '@/lib/prisma.config'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export async function getCards() {
