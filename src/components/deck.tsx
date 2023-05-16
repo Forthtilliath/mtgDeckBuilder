@@ -12,12 +12,14 @@ export default function Deck() {
   const cards = useSelector((state: RootState) => state.deck.cards)
   const dispatch = useDispatch()
   const decknameRef = useRef<HTMLInputElement | null>(null)
+  const deckdescRef = useRef<HTMLInputElement | null>(null)
 
   const hSave = async () => {
     assertIsDefined(decknameRef.current)
+    assertIsDefined(deckdescRef.current)
 
     const myData = {
-      description: 'totoland',
+      description: deckdescRef.current.value,
       name: decknameRef.current.value || 'Default deck',
       idAuthor: 1,
       cards: cards,
@@ -63,6 +65,12 @@ export default function Deck() {
             type="text"
             ref={decknameRef}
             placeholder="Deck name"
+            className={styles.input}
+          />
+          <input
+            type="text"
+            ref={deckdescRef}
+            placeholder="Deck description"
             className={styles.input}
           />
         </form>
