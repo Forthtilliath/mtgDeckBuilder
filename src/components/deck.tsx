@@ -45,6 +45,7 @@ export default function Deck() {
 
   return (
     <>
+      <h3 className={styles.title}>Création d'un deck</h3>
       <DeckForm setRef={setRef} onSubmit={hSave} />
 
       <ul className={styles.deck}>
@@ -62,7 +63,7 @@ export default function Deck() {
           </li>
         ))}
       </ul>
-      
+
       {cards.length > 0 && (
         <div className={styles.btnsWrapper}>
           <button
