@@ -40,7 +40,7 @@ export default function Deck() {
 
   return (
     <>
-      <h3 className={styles.title}>Création d'un deck</h3>
+      <h3 className={styles.title}>Création d&apos;un deck</h3>
       <DeckForm setRef={setRef} onSubmit={hSave} />
 
       <ul className={styles.deck}>
