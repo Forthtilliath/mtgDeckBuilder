@@ -26,6 +26,7 @@ declare global {
    */
   type PromiseReturnType<T> = Awaited<ReturnType<T>>
 
+  type Setter<T> = React.Dispatch<React.SetStateAction<T>>
 
-  type Setter<T> = React.Dispatch<React.SetStateAction<T>>;
+  type CSSModuleClasses = { readonly [key: string]: string }
 }
