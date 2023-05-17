@@ -1,4 +1,6 @@
 {
-    "WillLuke.nextjs.addTypesOnSave": true,
-    "WillLuke.nextjs.hasPrompted": true
+  "WillLuke.nextjs.addTypesOnSave": true,
+  "WillLuke.nextjs.hasPrompted": true,
+  "docwriter.language": "French",
+  "docwriter.style": "JSDoc"
 }
