@@ -6,27 +6,25 @@
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    'Titre Titre'
-    'Aside Main';
+    'titre titre'
+    'aside main';
   height: 100vh;
 }
 
-.Aside {
-  grid-area: Aside;
+.aside {
+  grid-area: aside;
 
   border: 2px dotted firebrick;
-
-  .fixedContainer {
-    position: fixed;
-  }
 }
 
-.Main {
-  grid-area: Main;
+.main {
+  grid-area: main;
 
   border: 2px dotted yellowgreen;
+
+  overflow-y: auto;
 }
 
-.Titre {
-  grid-area: Titre;
+.titre {
+  grid-area: titre;
 }

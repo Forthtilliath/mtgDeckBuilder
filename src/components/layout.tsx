@@ -10,15 +10,13 @@ interface Props {
 export default function Layout({ children }: Props) {
   return (
     <div className={styles.layout}>
-      <header className={styles.Titre}>
+      <header className={styles.titre}>
         <h1>ValhallaCode</h1>
       </header>
-      <aside className={styles.Aside}>
-        <div className={styles.fixedContainer}>
-          <Deck />
-        </div>
+      <aside className={styles.aside}>
+        <Deck />
       </aside>
-      <main className={styles.Main}>{children}</main>
+      <main className={styles.main}>{children}</main>
     </div>
   )
 }
