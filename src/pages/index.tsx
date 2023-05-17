@@ -4,7 +4,7 @@ import Gallery from '@/components/gallery'
 import { store } from '@/lib/redux/store'
 import { Provider } from 'react-redux'
 import { InferGetServerSidePropsType } from 'next'
-import { ChangeEvent, cache, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
 import { formatAPICardsWithImages } from '@/utils/methods/api'
@@ -95,9 +95,11 @@ async function getCards(page = 1): Promise<API.CardData> {
     // Pour trouver la source du pourquoi ca fetch pas parfois
     console.log('Data fetched...')
     return res.json()
-  } catch (e: any) {
-    console.error(e.name)
-    console.error(e.message)
+  } catch (e) {
+    if (e instanceof Error) {
+      console.error(e.name)
+      console.error(e.message)
+    }
     return { cards: [] }
   }
 }
