@@ -1,15 +1,7 @@
-import React, { LegacyRef } from 'react'
+import { RefCallback } from 'react'
 import { useRef } from 'react'
 
 type FormElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-
-type TInput<T> = T extends HTMLInputElement
-  ? HTMLInputElement
-  : T extends HTMLTextAreaElement
-  ? HTMLTextAreaElement
-  : T extends HTMLSelectElement
-  ? HTMLSelectElement
-  : never
 
 // On utilise un générique pour pouvoir convertir le tableau en union type, sinon on a un string
 export function useRefInputs<T extends string>(inputs: ReadonlyArray<T>) {
@@ -25,11 +17,10 @@ export function useRefInputs<T extends string>(inputs: ReadonlyArray<T>) {
   const inputsRef = useRef<TInputs>(initialState)
 
   // Setter pour affecter plus facilement les refs des inputs à notre objet ref
+  // RefCallback permet de limiter les éléments ciblé par le ref aux éléments ForElement
   const setRef =
-    <TElement extends FormElement>(
-      key: T
-    ): React.RefCallback<TInput<TElement>> =>
-    (ref: TInput<TElement>) => {
+    (key: T): RefCallback<FormElement> =>
+    (ref: FormElement) => {
       if (inputs.includes(key)) inputsRef.current[key] = ref
     }
 
