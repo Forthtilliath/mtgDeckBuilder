@@ -1,9 +1,9 @@
-import { useRefInputs } from '@/utils/hooks/useRefInputs'
+import { UseRefFieldsActions } from '@/utils/hooks/useRefFields'
 import styles from './deckForm.module.scss'
 
 type Props = {
   onSubmit: React.FormEventHandler<HTMLFormElement>
-  setRef: ReturnType<typeof useRefInputs<(typeof inputsName)[number]>>[1]
+  setRef: UseRefFieldsActions<(typeof inputsName)[number]>['setRef']
 }
 
 export const inputsName = ['name', 'desc'] as const
