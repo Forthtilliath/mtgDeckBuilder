@@ -5,3 +5,5 @@
   - [ ] Probablement utiliser un forwardRef pour le formulaire
 - [ ] Récupérer les images des nouvelles cartes directement sur le serveur
   - [ ] L'avantage serait de faire moins de call à l'API
+- [ ] useDeck doit pouvoir prendre en compte d'autres types de champ de formulaire
+  - [ ] checkbox / radio / textarea
